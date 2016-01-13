@@ -1,0 +1,82 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Controls="clr-namespace:GraphSharp.Controls;assembly=GraphSharp.Controls" x:Class="GKS6.Page1" 
+      mc:Ignorable="d" 
+      d:DesignHeight="725" d:DesignWidth="902"
+  	  Title="Page1" Background="White" MouseDown="Page_MouseDown">
+    <Grid Margin="0,0,2,0" Background="Transparent" x:Name="gridMain">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="432"/>
+            <RowDefinition Height="386"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid HorizontalAlignment="Stretch" Background="Transparent" x:Name="gridUpper" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="109*"/>
+                <ColumnDefinition Width="184*"/>
+                <ColumnDefinition Width="157*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Label Content="Исходные данные" Margin="29,5,0,0" FontSize="14" Height="29" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129"/>
+            <DataGrid x:Name="DataGrid_Initial" VerticalAlignment="Top" RenderTransformOrigin="0.25,1.846" FontSize="14" AutoGenerateColumns = "false" LoadingRow="DataGrid_Initial_LoadingRow" Margin="10,39,0,0" Height="384" ClipboardCopyMode="None" HorizontalAlignment="Left" Width="198"/>
+            <Label Content="Матрица сравнений" Margin="76,5,0,0" FontSize="14" Height="29" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Width="140"/>
+            <DataGrid x:Name="DataGrid_Comparation" Margin="10,39,0,0" VerticalAlignment="Top" LoadingRow="DataGrid_Comparation_LoadingRow" FontSize="14" Height="384" Grid.Column="1" ClipboardCopyMode="None" HorizontalAlignment="Left" Width="348"/>
+            <Label Content="Группы" Margin="108,10,0,0" FontSize="14" Height="29" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Width="60"/>
+
+
+            <ListView x:Name="ListView_GroupsUnsimplified" Height="170" Margin="10,44,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontSize="14" Grid.Column="2" IsSynchronizedWithCurrentItem="True" SelectionMode="Single" HorizontalAlignment="Left" Width="294">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type GridViewColumnHeader}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Style>
+                </ListView.Resources>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Keys}" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Values}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Label Content="Упрощенные группы" Margin="65,219,0,0" VerticalAlignment="Top" FontSize="14" Height="29" Grid.Column="2" HorizontalAlignment="Left" Width="145"/>
+            <ListView x:Name="ListView_GroupsSimplified" Height="170" Margin="10,253,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="2" IsSynchronizedWithCurrentItem="True" SelectionMode="Single" SelectionChanged="ListView_GroupsSimplified_SelectionChanged" HorizontalAlignment="Left" Width="294">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type GridViewColumnHeader}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Style>
+                </ListView.Resources>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Keys}" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Values}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+
+        <Grid HorizontalAlignment="Stretch" Background="Transparent" x:Name="gridBottom" Height="Auto" Grid.Row="1" VerticalAlignment="Stretch" Width="Auto" Margin="0,0,0,93">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+
+            <Label Content="Граф группы" Margin="125,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14" Height="29" Width="95"/>
+
+
+            <Controls:GraphLayout x:Name="GraphLayout_GroupInitial" Margin="10,34,10,0"                             
+				HighlightAlgorithmType="Simple" LayoutAlgorithmType="Circular" OverlapRemovalAlgorithmType="FSA" AnimationLength="0" Height="249" VerticalAlignment="Top" />
+            <Label Content="Граф модулей" Margin="176,0,0,0" VerticalAlignment="Top" FontSize="14" Height="29" Grid.Column="1" HorizontalAlignment="Left" Width="100"/>
+            <Controls:GraphLayout x:Name="GraphLayout_GroupModuled" Margin="10,34,10,0" VerticalAlignment="Top" Height="249"                             
+				HighlightAlgorithmType="Simple" LayoutAlgorithmType="Circular" OverlapRemovalAlgorithmType="FSA" Grid.Column="1" AnimationLength="0"/>
+        </Grid>
+    </Grid>
+</Page>

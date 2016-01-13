@@ -1,0 +1,20 @@
+﻿<Window 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"      
+        xmlns:Controls="clr-namespace:GraphSharp.Controls;assembly=GraphSharp.Controls" x:Name="mainWindow1" x:Class="GKS6.MainWindow"
+        Height="760" Width="1020" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" ResizeMode="CanResizeWithGrip">
+    <Grid Name="MainGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SizeChanged="MainGrid_SizeChanged">
+        <Grid.LayoutTransform>
+            <ScaleTransform x:Name="ApplicationScaleTransform"
+                        CenterX="0"
+                        CenterY="0"
+                        ScaleX="{Binding ElementName=mainWindow1, Path=ScaleValue}"
+                        ScaleY="{Binding ElementName=mainWindow1, Path=ScaleValue}" />
+        </Grid.LayoutTransform>
+
+        <Frame x:Name="frameMain" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" Margin="100,0,0,0"/>
+        <Button x:Name="buttonPage0" Content="Страница 0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="buttonPage0_Click"/>
+        <Button x:Name="buttonPage1" Content="Страница 1" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="75" Click="buttonPage1_Click"/>
+        <Button x:Name="buttonPage2" Content="Страница 2" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="75" Click="buttonPage2_Click"/>
+    </Grid>
+</Window>
